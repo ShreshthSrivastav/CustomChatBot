@@ -23,15 +23,15 @@ st.write(
     
 )
 
-openai_api_key = st.text_input("OpenAI API Key", type="password")
+api_key = st.text_input("OpenAI API Key", type="password")
 
-if not openai_api_key:
+if not api_key:
     st.info("Please add your OpenAI API key to continue.", icon="🗝️")
     st.stop()
 
 else:
     
-    chat = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.5, OPENAI_API_KEY = openai_api_key)
+    chat = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.5, openai_api_key = api_key)
 
     # Initialize chat messages in the session state
     if 'messages' not in st.session_state:
