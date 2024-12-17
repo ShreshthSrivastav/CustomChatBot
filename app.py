@@ -9,6 +9,7 @@ import streamlit as st
 from streamlit_chat import message
 from dotenv import load_dotenv, find_dotenv
 # load_dotenv(find_dotenv(), override=True)
+import os
 
 st.set_page_config(
     page_title='Your Custom Assistant',
