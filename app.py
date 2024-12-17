@@ -25,8 +25,6 @@ st.write(
 
 api_key = st.text_input("OpenAI API Key", type="password")
 
-import request
-
 def validate_openai_api_key(api_key):
     try:
         os.environ['OPENAI_API_KEY'] = api_key
