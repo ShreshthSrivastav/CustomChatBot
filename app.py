@@ -47,7 +47,7 @@ else:
     if validate_openai_api_key(api_key):
         st.success("Valid API")
     else:
-        st.error("Invaid API")
+        st.error("Invalid API")
         
     chat = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.5, openai_api_key = api_key)
 
