@@ -27,16 +27,15 @@ api_key = st.text_input("OpenAI API Key", type="password")
 
 import request
 
-def validate_api_key(api_key):
-    headers = {"Authorization": f"Bearer {api_key}"}
+def validate_openai_api_key(api_key):
     try:
-        response = requests.get("https://api.openai.com/v1/models", headers=headers)
-        if response.status_code == 200:
-            return True
-        else:
-            return False
+        os.environ['OPENAI_API_KEY'] = api_key
+        # Perform a simple operation to validate the key
+        embeddings = OpenAIEmbeddings()
+        embeddings.embed_query("test")  # Test query
+        return True
     except Exception as e:
-        st.error(f"An error occurred: {e}")
+        st.error(f"Invalid OpenAI API Key: {e}")
         return False
 
 if not api_key:
@@ -45,7 +44,7 @@ if not api_key:
 
 else:
     
-    validate_api_key(api_key)
+    validate_openai_api_key(api_key)
     chat = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.5, openai_api_key = api_key)
 
     # Initialize chat messages in the session state
