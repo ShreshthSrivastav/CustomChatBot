@@ -25,12 +25,27 @@ st.write(
 
 api_key = st.text_input("OpenAI API Key", type="password")
 
+import request
+
+def validate_api_key(api_key):
+    headers = {"Authorization": f"Bearer {api_key}"}
+    try:
+        response = requests.get("https://api.openai.com/v1/models", headers=headers)
+        if response.status_code == 200:
+            return True
+        else:
+            return False
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
+        return False
+
 if not api_key:
     st.info("Please add your OpenAI API key to continue.", icon="🗝️")
     st.stop()
 
 else:
     
+    validate_api_key(api_key)
     chat = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.5, openai_api_key = api_key)
 
     # Initialize chat messages in the session state
