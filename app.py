@@ -45,7 +45,7 @@ if not api_key:
 else:
     
     if validate_openai_api_key(api_key):
-        st.write("Valid API")
+        st.success("Valid API")
         
     chat = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.5, openai_api_key = api_key)
 
